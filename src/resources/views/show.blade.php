@@ -7,19 +7,17 @@
         <div class="card-header">アンケート詳細</div>
         <div class="card-body">
             <!-- ID -->
-            <div class="row">
+            <div class="row br">
                 <div class="col-md-2"><label>ID</label></div>
                 <div class="col-md-5">{{ $answer->id }}</div>
             </div>
-            <br>
             <!-- 氏名 -->
-            <div class="row">
+            <div class="row br">
                 <div class="col-md-2"><label>氏名</label></div>
                 <div class="col-md-5">{{ $answer->fullname }}</div>
             </div>
-            <br>
             <!-- 性別 -->
-            <div class="row">
+            <div class="row br">
                 <div class="col-md-2"><label>性別</label></div>
                 <div class="col-md-5">
                     @if ($answer->gender == 0)
@@ -29,21 +27,18 @@
                     @endif
                 </div>
             </div>
-            <br>
             <!-- 年代 -->
-            <div class="row">
+            <div class="row br">
                 <div class="col-md-2"><label>年代</label></div>
                 <div class="col-md-5">{{ $answer->age_id }}</div>
             </div>
-            <br>
             <!-- メールアドレス -->
-            <div class="row">
+            <div class="row br">
                 <div class="col-md-2"><label>メールアドレス</label></div>
                 <div class="col-md-5">{{ $answer->email }}</div>
             </div>
-            <br>
             <!-- メール送信可否 -->
-            <div class="row">
+            <div class="row br">
                 <div class="col-md-2"><label>メール送信可否</label></div>
                 <div class="col-md-5">
                     @if ($answer->is_send_email == 1)
@@ -53,19 +48,16 @@
                     @endif
                 </div>
             </div>
-            <br>
             <!-- ご意見 -->
-            <div class="row">
+            <div class="row br">
                 <div class="col-md-2">ご意見</div>
                 <div class="col-md-5">{!! nl2br($answer->feedback) !!}</div>
             </div>
-            <br>
             <!-- 登録日 -->
-            <div class="row">
+            <div class="row br">
                 <div class="col-md-2"><label>登録日</label></div>
                 <div class="col-md-5">{{ $answer->created_at }}</div>
             </div>
-            <br>
             <!-- ボタン -->
             <div class="row">
                 <div class="col-md-2">&nbsp;</div>
