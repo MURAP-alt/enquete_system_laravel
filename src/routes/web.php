@@ -31,4 +31,7 @@ Route::post('/complete', 'FrontController@save');
 // 詳細ページから削除
 Route::post('/system/delete/{id}', 'HomeController@delete');
 
+// 選択削除
+Route::post('/system{ids}', 'HomeController@select_delete');
+
 Auth::routes();

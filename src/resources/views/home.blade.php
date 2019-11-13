@@ -89,54 +89,54 @@
         </div>
     </div>
 </div>
-<form action="" method="post">
-    <div class="col-md-12 br">
+<!-- 一覧表示 -->
+@if (count($answers) > 0)
+<div class="panel-body">
+    <div class="container-fluid">
+        <div class="row border border-bottom">
+            <div class="col-md-1 mx-auto">
+                <input type="checkbox" id="category_all" name="category_all">
+                全選択
+            </div>
+            <div class="col-md-1">ID</div>
+            <div class="col-md-2">名前</div>
+            <div class="col-md-1">性別</div>
+            <div class="col-md-1">年代</div>
+            <div class="col-md-4">内容</div>
+            <div class="col-md-1 mx-auto">&nbsp;</div>
+        </div>
+        <br>
+        <div id="categories">
+            @foreach ($answers as $answer)
+            <div class="row br-sm">
+                <div class="col-md-1 mx-auto">
+                    <input type="checkbox" name="category[]" id="category" class="category" value="{{ $answer->id }}">
+                </div>
+                <div class="col-md-1">{{ $answer->id }}</div>
+                <div class="col-md-2">{{ $answer->fullname }}</div>
+                <div class="col-md-1">
+                    @if ($answer->gender == 0)
+                    男性
+                    @else
+                    女性
+                    @endif
+                </div>
+                <div class="col-md-1">{{ $answer->age_id }}</div>
+                <div class="col-md-4">{{ str_limit($answer->feedback, $limit = 40, $end = '...') }}</div>
+                <div class="col-md-1 mx-auto">
+                    <a href="/system/{{ $answer->id }}" class="btn btn-primary">詳細</a>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+<form action="{{ url('/system'.$answer->id) }}" method="POST">
+    {{ csrf_field() }}
+    <div class="col-md-12">
         <button type="submit" class="btn btn-danger">
             <i class="fa fa-trash">選択した項目を削除</i>
         </button>
-    </div>
-    <!-- 一覧表示 -->
-    @if (count($answers) > 0)
-    <div class="panel-body">
-        <div class="container-fluid">
-            <div class="row border border-bottom">
-                <div class="col-md-1 mx-auto">
-                    <input type="checkbox" id="category_all" name="category_all">
-                    全選択
-                </div>
-                <div class="col-md-1">ID</div>
-                <div class="col-md-2">名前</div>
-                <div class="col-md-1">性別</div>
-                <div class="col-md-1">年代</div>
-                <div class="col-md-4">内容</div>
-                <div class="col-md-1 mx-auto">&nbsp;</div>
-            </div>
-            <br>
-            <div id="categories">
-                @foreach ($answers as $answer)
-                <div class="row br-sm">
-                    <div class="col-md-1 mx-auto">
-                        <input type="checkbox" name="category_{{ $answer->id }}" id="category_{{ $answer->id }}"
-                            class="category" value="{{ $answer->id }}">
-                    </div>
-                    <div class="col-md-1">{{ $answer->id }}</div>
-                    <div class="col-md-2">{{ $answer->fullname }}</div>
-                    <div class="col-md-1">
-                        @if ($answer->gender == 0)
-                        男性
-                        @else
-                        女性
-                        @endif
-                    </div>
-                    <div class="col-md-1">{{ $answer->age_id }}</div>
-                    <div class="col-md-4">{{ str_limit($answer->feedback, $limit = 40, $end = '...') }}</div>
-                    <div class="col-md-1 mx-auto">
-                        <a href="/system/{{ $answer->id }}" class="btn btn-primary">詳細</a>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
     </div>
 </form>
 @endif

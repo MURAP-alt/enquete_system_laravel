@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Answer;
 use App\Age;
-use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -100,6 +99,19 @@ class HomeController extends Controller
     public function delete(Request $request)
     {
         Answer::findOrFail($request->id)->delete();
+        return redirect('/system');
+    }
+    // 選択削除
+    public function select_delete(Request $request)
+    {
+        if (isset($_POST[$request->id])) {
+            $max = count($_POST[$request->id]);
+
+            for ($i=0;$i < $max; $i++) {
+                Answer::findOrFail($request->id)->delete();
+            }
+        }
+
         return redirect('/system');
     }
 }
